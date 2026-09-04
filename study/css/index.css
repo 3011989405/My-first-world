@@ -88,3 +88,360 @@ body{
     height: 16px;
     background-image: url(../img/屏幕截图\ 2026-09-02\ 205647.png);
 }
+
+.user{
+    margin-left: 32px;
+    margin-top: -2px;
+}
+
+.user img{
+    /* vertical-align行内块和行内垂直方向对齐方式 */
+    vertical-align: middle;
+    margin-right: 7px;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.user span{
+    font-size: 14px;
+    color: #666;
+}
+
+/* banner区域 */
+.banner{
+    height: 420px;
+    background-color: #0092cb;
+
+}
+
+.banner .wrapper{
+    display: flex;
+    justify-content: space-between;
+    height: 420px;
+    background-image: url(../img/banner.png);
+}
+
+/* 左侧侧导航 */
+.banner .left{
+    padding: 3px 20px;
+    width: 191px;
+    height: 420px;
+    background-color: rgba(0,0, 0, 0.42);
+}
+
+.banner .left a{
+    /* 块级：宽度是父级的100% */
+    display: block;
+    height: 46px;
+    line-height: 46px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.banner .left li a{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.banner ul span{
+    display: block;
+}
+
+.banner .left a:hover{
+    background-image: url();
+    color: #00a4ff;
+}
+
+/* 课程表 */
+.banner .right{
+    margin-top: 60px;
+    width: 218px;
+    height: 305px;
+    background-color: #209dd5;
+    border-radius: 10px;
+}
+
+.banner .right h3{
+    margin-left: 14px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.banner .right .content{
+    padding: 14px;
+    height: 257px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.banner .right dl{
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.banner .right dt{
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.banner .right dd{
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.banner .right dd span{
+    color: #00a4ff;
+}
+
+.banner .right dd strong{
+    color: #7d7d7d;
+    font-weight: 400;
+}
+
+.banner .right a{
+    display: block;
+    height: 32px;
+    background-color: #00a4ff;
+    /* 水平居中 */
+    text-align: center;
+    line-height: 32px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 15px;
+}
+
+/* 精品推荐 */
+.recommend{
+    display: flex;
+    margin-top: 11px;
+    padding: 0 20px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0px 1px 2px 0px rgba(211, 211, 211, 0.5);
+    line-height: 60px;
+}
+
+.recommend h3{
+    font-size: 18px;
+    color: #00a4ff;
+    font-weight: 400;
+}
+
+.recommend ul{
+    display: flex;
+    /* 除去标题和修改兴趣的尺寸，父级剩余尺寸都给了ul，实现把修改兴趣挤到最右侧 */
+    flex: 1;
+}
+
+.recommend ul li a{
+    padding: 0 24px;
+    border-right: 1px solid #e0e0e0;
+    font-size: 18px;
+
+}
+
+.recommend ul li a:hover{
+    color: #0092cb;
+}
+
+.recommend ul li:last-child a{
+    border-right: 0;
+}
+
+.recommend .modify{
+    font-size: 16px;
+    color: #00a4ff;
+}
+
+/* 推荐课程 */
+.course{
+    margin-top: 15px;
+
+}
+
+/* 标题 - 公共类，与其他区域共用 */
+.hd{
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    line-height: 60px;
+}
+
+.course .hd h3{
+    font-size: 21px;
+    color: #333;
+    font-weight: 400;
+}
+
+.course .hd a:hover{
+    color: #0092cb;
+}
+
+.hd .more{
+    font-size: 14px;
+    color: #999;
+}
+
+/* 课程内容 - 公共类 */
+.bd ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.bd li{
+    margin-bottom: 14px;
+    width: 228px;
+    height: 271px;
+    background-color: pink;
+}
+
+.bd li:hover{
+    box-shadow: 2px 5px 10px 1px rgba(0,0, 0, 0.5);
+}
+
+.bd li .pic{
+    height: 156px;
+}
+
+.bd li .pic img{
+    width: 228px;
+    height: 156px;
+}
+
+.bd li .text h4{
+    margin-bottom: 13px;
+    font-size: 14px;
+    height: 40px;
+    line-height: 20px;
+}
+
+.bd li .text h4:hover{
+    color: #0092cb;
+}
+
+.bd li .text{
+    padding: 20px;
+    height: 115px;
+    background-color: #fff;
+}
+
+.bd li .text p{
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+}
+
+.bd li .text span{
+    color: #fa6400;
+}
+/* 前端开发工程师*/
+.hd ul{
+    display: flex;
+}
+
+.hd li{
+    margin-right: 60px;
+    font-size: 16px;
+}
+
+.front .hd a:hover{
+   color: #0092cb;
+}
+
+.bd{
+    display: flex;
+    justify-content: space-between;
+} 
+
+.bd .left{
+    width: 228px;
+    background-color: pink; 
+}
+
+.bd .right{
+    width: 957px;
+    background-color: #f3f5f7;
+}
+
+.bd .right img{
+    width: 957px;
+    height: 100px;
+}
+
+.bd .right .top{
+    margin-bottom: 15px;
+    height: 100px;
+}
+
+/* 版权 */
+
+.footer{
+    margin-top: 60px;
+    height: 273px;
+    background-color: #fff;
+}
+
+.footer .wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer .left{
+    width: 440px;
+}
+
+.footer .left a img{
+    margin-top: 30px;
+}
+
+.footer .left p{
+    margin-top: 24px;
+    margin-bottom: 14px; 
+    font-size: 12px;
+    line-height: 17px;
+    color: #666;
+}
+
+.footer .left .download{
+    display: block;
+    width: 120px;
+    height: 36px;
+    border: 1px solid #00a4ff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 34px;
+    background-color: #;
+}
+
+.footer .right{
+    display: flex;
+}
+.footer .right dl{
+    margin-top: 40px;
+    margin-left: 130px;
+}
+
+.footer .right dt{
+    margin-bottom: 13px;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.footer .right dd a{
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+}
+
+.footer .right dd a:hover{
+    color: #0092cb;
+}
