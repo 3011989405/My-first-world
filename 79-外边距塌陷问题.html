@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外边距塌陷问题</title>
+    <style>
+        .father{
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+
+            /*通过父级里padding取代子级的margin，但padding会撑大盒子，需要用box-sizing还原 */
+            /* padding-top: 50px;
+            box-sizing: border-box; */
+            /* 通过overflow: hidden;来解决塌陷问题 */
+            /* overflow: hidden; */
+            /* 通过border-top来解决塌陷问题,但一般都建议用第一种 */
+            border-top: 1px solid #000;
+        }
+
+        .son{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">测试标签二</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+网站根目录是指存放网站的第一层文件夹，内部包含当前网站的所有素材，包含HTML 、CSS、图片，JavaScript等等
+study
+	img文件夹：存放固定使用的图片素材，例如：logo、样式修饰图等等
+	uploads文件夹：存放非固定使用的图片素材，例如：商品图、宣传图需要上传的图片
+	css文件夹：存放CSS文件（link标签引入）
+		base.css：基础公共样式，例如：清除默认样式、设置网页基本样式
+		index.css：首页CSS样式
+	index.html：首页HTML文件	

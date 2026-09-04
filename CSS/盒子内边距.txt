@@ -1,0 +1,10 @@
+盒子模型-内边距
+作用：设置内容与盒子边缘之间的距离
+属性名：padding/padding-方位名词（top right bottom left）
+
+padding多值写法
+取值个数			示例									含义
+一个值			padding: 10px;						四个方向内边距均为10px
+四个值			padding: 10px 20px 40px 80px;		上：10px；右：20px；下：40px；左：80px
+三个值			padding: 10px 40px 80px;				上：10px；左右：40px；下：80px
+两个值			padding: 10px 80px;					上下：10px；左右：80px		

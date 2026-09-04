@@ -1,0 +1,23 @@
+伪类选择器：伪类表示元素状态，选中元素的某个状态设置样式。
+鼠标悬停状态：选择器：hover(CSS属性)
+<style>
+	a:hover{
+		color: red;
+	}
+
+	.box: hover{
+		color: green;
+	}
+</style>
+
+<a href="#">a 标签</a>
+<div class="box">div标签</div>
+
+伪类-超链接（拓展）
+超链接义工有四个状态
+选择器			作用
+:link				访问前
+:visited			访问后
+:hover			鼠标悬停
+:active			点击时（激活）
+注意：如果要个超链接设置以上四个状态，需要按照LVHA的顺序书写

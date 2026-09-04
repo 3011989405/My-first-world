@@ -1,0 +1,22 @@
+外边距问题-合并现象
+场景：垂直排列的兄弟元素例如margin-top和margin-bottom两个盒子外边距相接触，上下margin会合并
+现象：取两个margin中的较大值生效
+
+外边距问题-塌陷问题
+场景：父子级的标签，子级的添加上外边距会产生塌陷问题
+.son{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+
+            margin-top: 50px;
+        }
+......
+<div class="father">
+        <div class="son">测试标签二</div>
+    </div>
+解决方法：
+1.取消子集margin，父级设置paddding
+2.父级设置overflow：hidden
+3.父级设置border-top
+		

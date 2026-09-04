@@ -1,0 +1,9 @@
+按钮：button
+<button type="">按钮</button>
+type属性值：
+type属性值			说明
+submit				提交按钮，点击后可以提交数据到后台（默认功能）
+reset				重置按钮，点击后将表单控件恢复默认值
+button				普通按钮，默认没有功能，一般配合javaScript使用
+要想按钮与表单控件联动，需要用form将所有表单控件包裹起来
+form的action是发送数据的地址

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-修改主轴方向</title>
+    <style>
+        .box{
+            display: flex;
+            /* 修改主轴方向（默认水平），主轴方向变换，侧轴（默认垂直）自动变 */
+            flex-direction: column;
+            /* 主轴在垂直，视觉效果：垂直居中 */
+            justify-content: center;
+            /* 侧轴在水平，视觉效果：水平居中 */
+            align-items: center;
+
+           width: 150px;
+           height: 120px;
+           background-color: pink;
+        }
+        .img{
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="./屏幕截图 2026-07-02 163326.png" alt="">
+        <span>媒体</span>
+    </div>
+</body>
+</html>

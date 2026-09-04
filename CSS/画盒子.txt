@@ -1,0 +1,6 @@
+画盒子：使用合适的选择器画盒子
+新属性：
+属性名					作用
+width					宽度
+height					高度
+background-color		背景色

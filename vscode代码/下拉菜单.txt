@@ -1,0 +1,4 @@
+下拉菜单标签：select 嵌套 option，select是下拉菜单的整体，option是下拉菜单的每一项，若需要默认选择那个一个就在option里加入selected
+<select>
+	<option>北京</option>
+	<option selected>上海</option>（默认选项）

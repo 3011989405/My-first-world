@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>前端学习手册 · HTML + CSS</title>
+<style>
+  :root{
+    --bg:#f6f8fc; --card:#ffffff; --ink:#1c2333; --sub:#5b6b8c;
+    --line:#e6ebf5; --blue:#4d6bfe; --blue2:#7c5cff; --green:#0fa968;
+    --amber:#e8930c; --red:#e5484d; --pink:#f472b6;
+    --grad:linear-gradient(135deg,#4d6bfe 0%,#7c5cff 55%,#b06bfe 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.7}
+  /* ---------- 顶栏 ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .bar{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;flex:none}
+  .bar h1{font-size:17px;font-weight:700}
+  .bar .tag{font-size:12px;color:var(--sub);background:#eef1fa;padding:2px 10px;border-radius:99px}
+  .search{flex:1;min-width:200px;position:relative}
+  .search input{width:100%;padding:9px 14px 9px 36px;border:1.5px solid var(--line);border-radius:99px;font-size:14px;background:#fff;outline:none;transition:.2s}
+  .search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(77,107,254,.15)}
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.45}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .tab{padding:7px 16px;border-radius:99px;border:1.5px solid var(--line);background:#fff;font-size:13.5px;cursor:pointer;color:var(--sub);transition:.2s;font-weight:600}
+  .tab:hover{border-color:var(--blue);color:var(--blue)}
+  .tab.on{background:var(--grad);color:#fff;border-color:transparent}
+  main{max-width:1100px;margin:26px auto 80px;padding:0 20px}
+  .count{font-size:13px;color:var(--sub);margin:4px 2px 14px}
+  .count b{color:var(--blue)}
+  /* ---------- 卡片与表格 ---------- */
+  .sec{margin-bottom:34px}
+  .sec h2{font-size:18px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .sec h2::before{content:"";width:5px;height:20px;border-radius:3px;background:var(--grad);display:inline-block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 3px rgba(30,40,80,.04)}
+  .card .hd{padding:13px 18px;font-weight:700;font-size:14.5px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+  .card .hd .n{font-size:11px;color:var(--sub);background:#f0f3fa;padding:2px 8px;border-radius:99px;font-weight:600}
+  table{width:100%;border-collapse:collapse}
+  th{font-size:12.5px;color:var(--sub);text-align:left;padding:9px 16px;background:#fafbfe;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:9px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#f8faff}
+  code.tag{font-family:Consolas,Menlo,monospace;font-size:13px;background:#eef1fb;color:#3d5afe;padding:2px 7px;border-radius:6px;white-space:nowrap}
+  .en{color:var(--sub);font-size:12.5px}
+  .zh{font-weight:600}
+  .use{font-size:13.5px;color:var(--ink)}
+  /* ---------- 状态徽章 ---------- */
+  .bdg{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:99px;font-weight:700;white-space:nowrap}
+  .ok{background:#e6f7ef;color:var(--green)}
+  .mid{background:#fdf3e2;color:var(--amber)}
+  .no{background:#fde8e9;color:var(--red)}
+  .empty{padding:40px;text-align:center;color:var(--sub)}
+  .empty b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
+  /* ---------- 口诀 ---------- */
+  .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  .tip{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:14px 16px}
+  .tip b{display:block;font-size:14px;margin-bottom:5px}
+  .tip p{font-size:13.5px;color:var(--sub)}
+  .tip code{font-family:Consolas,monospace;font-size:12.5px;background:#eef1fb;padding:1px 6px;border-radius:5px;color:#3d5afe}
+  /* ---------- 路线图 ---------- */
+  .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;padding:18px}
+  .fnode{flex:1;min-width:150px;background:#f4f7ff;border:1.5px solid #dbe3ff;border-radius:14px;padding:13px 15px;text-align:center}
+  .fnode b{display:block;font-size:14px;color:var(--blue)}
+  .fnode span{font-size:12.5px;color:var(--sub)}
+  .farrow{align-self:center;color:#b9c3e8;font-size:20px;font-weight:800}
+  footer{text-align:center;color:var(--sub);font-size:12.5px;padding:20px}
+  @media (max-width:640px){ .bar h1{font-size:15px} main{padding:0 12px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <div class="logo">F</div>
+    <h1>前端学习手册</h1>
+    <span class="tag">HTML + CSS · 黑马入门</span>
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5b6b8c" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="q" type="text" placeholder="搜索标签 / CSS 属性 / 中文含义，如：段落、p、border…">
+    </div>
+    <div class="tabs">
+      <button class="tab on" data-tab="tab-cheat">📖 速查表</button>
+      <button class="tab" data-tab="tab-work">📊 学习工作流</button>
+      <button class="tab" data-tab="tab-course">🎬 课程大纲</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 速查表 ============ -->
+<div id="tab-cheat">
+  <p class="count">共 <b id="c-cheat">0</b> 个知识点 · 记忆心法：<b>标签名 = 英文单词</b>（p = paragraph 段落）</p>
+
+  <div class="sec">
+    <h2>文档结构</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">标签</th><th style="width:220px">英文含义</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">&lt;html&gt;</code></td><td><span class="en">HyperText Markup Language</span></td><td class="use">整个网页的根</td></tr>
+        <tr><td><code class="tag">&lt;head&gt;</code></td><td><span class="en">head 头部</span></td><td class="use">网页信息区（不显示）</td></tr>
+        <tr><td><code class="tag">&lt;title&gt;</code></td><td><span class="en">title 标题</span></td><td class="use">浏览器标签页上的文字</td></tr>
+        <tr><td><code class="tag">&lt;meta&gt;</code></td><td><span class="en">metadata 元数据</span></td><td class="use">网页描述/编码</td></tr>
+        <tr><td><code class="tag">&lt;body&gt;</code></td><td><span class="en">body 身体</span></td><td class="use">网页内容区（显示）</td></tr>
+        <tr><td><code class="tag">&lt;link&gt;</code></td><td><span class="en">link 链接</span></td><td class="use">引入外部文件（CSS）</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>文本类</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">标签</th><th style="width:220px">英文含义</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">&lt;h1&gt;~&lt;h6&gt;</code></td><td><span class="en">heading 标题</span></td><td class="use">六级标题（数字越大字越小）</td></tr>
+        <tr><td><code class="tag">&lt;p&gt;</code></td><td><span class="en">paragraph 段落</span></td><td class="use">一段文字</td></tr>
+        <tr><td><code class="tag">&lt;br&gt;</code></td><td><span class="en">break 打断</span></td><td class="use">换行（单标签）</td></tr>
+        <tr><td><code class="tag">&lt;hr&gt;</code></td><td><span class="en">horizontal rule 水平线</span></td><td class="use">分割线（单标签）</td></tr>
+        <tr><td><code class="tag">&lt;strong&gt;</code></td><td><span class="en">strong 加强</span></td><td class="use">加粗（有强调语义）</td></tr>
+        <tr><td><code class="tag">&lt;b&gt;</code></td><td><span class="en">bold 加粗</span></td><td class="use">加粗（无语义）</td></tr>
+        <tr><td><code class="tag">&lt;em&gt;</code></td><td><span class="en">emphasize 强调</span></td><td class="use">倾斜（有语义）</td></tr>
+        <tr><td><code class="tag">&lt;i&gt;</code></td><td><span class="en">italic 斜体</span></td><td class="use">倾斜（无语义）</td></tr>
+        <tr><td><code class="tag">&lt;u&gt;</code></td><td><span class="en">underline 下划线</span></td><td class="use">下划线</td></tr>
+        <tr><td><code class="tag">&lt;del&gt;</code></td><td><span class="en">delete 删除</span></td><td class="use">删除线</td></tr>
+        <tr><td><code class="tag">&lt;sup&gt;</code></td><td><span class="en">superscript 上标</span></td><td class="use">上标（x²）</td></tr>
+        <tr><td><code class="tag">&lt;sub&gt;</code></td><td><span class="en">subscript 下标</span></td><td class="use">下标（H₂O）</td></tr>
+        <tr><td><code class="tag">&lt;span&gt;</code></td><td><span class="en">span 跨度</span></td><td class="use">行内小容器，包一小段文字</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>列表类（List 家族）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">标签</th><th style="width:220px">英文含义</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">&lt;ul&gt;</code></td><td><span class="en"><b>U</b>nordered <b>L</b>ist</span></td><td class="use">无序列表（圆点）</td></tr>
+        <tr><td><code class="tag">&lt;ol&gt;</code></td><td><span class="en"><b>O</b>rdered <b>L</b>ist</span></td><td class="use">有序列表（数字）</td></tr>
+        <tr><td><code class="tag">&lt;li&gt;</code></td><td><span class="en"><b>L</b>ist <b>I</b>tem</span></td><td class="use">列表里的每一项</td></tr>
+        <tr><td><code class="tag">&lt;dl&gt;</code></td><td><span class="en"><b>D</b>efinition <b>L</b>ist</span></td><td class="use">定义列表（术语+解释）</td></tr>
+        <tr><td><code class="tag">&lt;dt&gt;</code></td><td><span class="en">Definition <b>T</b>erm</span></td><td class="use">要解释的术语</td></tr>
+        <tr><td><code class="tag">&lt;dd&gt;</code></td><td><span class="en">Definition <b>D</b>escription</span></td><td class="use">术语的解释</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>表格类（Table 家族）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">标签</th><th style="width:220px">英文含义</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">&lt;table&gt;</code></td><td><span class="en">table 表格</span></td><td class="use">整个表格</td></tr>
+        <tr><td><code class="tag">&lt;tr&gt;</code></td><td><span class="en">table <b>r</b>ow</span></td><td class="use">一行</td></tr>
+        <tr><td><code class="tag">&lt;td&gt;</code></td><td><span class="en">table <b>d</b>ata</span></td><td class="use">一个普通格子</td></tr>
+        <tr><td><code class="tag">&lt;th&gt;</code></td><td><span class="en">table <b>h</b>ead</span></td><td class="use">表头格（加粗居中）</td></tr>
+        <tr><td><code class="tag">&lt;thead&gt;</code></td><td><span class="en">table head</span></td><td class="use">表头区</td></tr>
+        <tr><td><code class="tag">&lt;tbody&gt;</code></td><td><span class="en">table body</span></td><td class="use">表身区</td></tr>
+        <tr><td><code class="tag">&lt;caption&gt;</code></td><td><span class="en">caption 标题</span></td><td class="use">表格标题</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>表单类（Form 家族）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">标签</th><th style="width:220px">英文含义</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">&lt;form&gt;</code></td><td><span class="en">form 表单</span></td><td class="use">整个表单容器</td></tr>
+        <tr><td><code class="tag">&lt;input&gt;</code></td><td><span class="en">input 输入</span></td><td class="use">输入框（靠 type 变身：text/password/radio/checkbox/file）</td></tr>
+        <tr><td><code class="tag">&lt;select&gt;</code></td><td><span class="en">select 选择</span></td><td class="use">下拉菜单整体</td></tr>
+        <tr><td><code class="tag">&lt;option&gt;</code></td><td><span class="en">option 选项</span></td><td class="use">下拉菜单的每一项</td></tr>
+        <tr><td><code class="tag">&lt;textarea&gt;</code></td><td><span class="en">text + area 文本域</span></td><td class="use">多行输入框</td></tr>
+        <tr><td><code class="tag">&lt;label&gt;</code></td><td><span class="en">label 标签</span></td><td class="use">给控件配文字，增大点击范围</td></tr>
+        <tr><td><code class="tag">&lt;button&gt;</code></td><td><span class="en">button 按钮</span></td><td class="use">按钮</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>媒体与链接</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">标签</th><th style="width:220px">英文含义</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">&lt;img&gt;</code></td><td><span class="en">im<b>a</b>g<b>e</b> 图片</span></td><td class="use">图片（单标签）</td></tr>
+        <tr><td><code class="tag">&lt;a&gt;</code></td><td><span class="en"><b>a</b>nchor 锚点</span></td><td class="use">超链接</td></tr>
+        <tr><td><code class="tag">&lt;audio&gt;</code></td><td><span class="en">audio 音频</span></td><td class="use">音频</td></tr>
+        <tr><td><code class="tag">&lt;video&gt;</code></td><td><span class="en">video 视频</span></td><td class="use">视频</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>布局标签（div/span + HTML5 语义化）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">标签</th><th style="width:220px">英文含义</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">&lt;div&gt;</code></td><td><span class="en">div<b>ision</b> 分区</span></td><td class="use">万能大盒子（块级）</td></tr>
+        <tr><td><code class="tag">&lt;span&gt;</code></td><td><span class="en">span 跨度</span></td><td class="use">小盒子（行内）</td></tr>
+        <tr><td><code class="tag">&lt;header&gt;</code></td><td><span class="en">header 页头</span></td><td class="use">顶部区域</td></tr>
+        <tr><td><code class="tag">&lt;nav&gt;</code></td><td><span class="en"><b>nav</b>igation 导航</span></td><td class="use">导航条</td></tr>
+        <tr><td><code class="tag">&lt;main&gt;</code></td><td><span class="en">main 主体</span></td><td class="use">主要内容区</td></tr>
+        <tr><td><code class="tag">&lt;footer&gt;</code></td><td><span class="en">footer 页脚</span></td><td class="use">底部区域</td></tr>
+        <tr><td><code class="tag">&lt;section&gt;</code></td><td><span class="en">section 章节</span></td><td class="use">一个板块</td></tr>
+        <tr><td><code class="tag">&lt;article&gt;</code></td><td><span class="en">article 文章</span></td><td class="use">独立文章块</td></tr>
+        <tr><td><code class="tag">&lt;aside&gt;</code></td><td><span class="en">aside 侧边</span></td><td class="use">侧边栏</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>CSS 属性（按前缀记忆）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:150px">属性</th><th style="width:90px">类别</th><th>作用 / 常用值</th></tr></thead>
+      <tbody>
+        <tr><td><code class="tag">font-size</code></td><td><span class="zh">字体</span></td><td class="use">字号，如 16px</td></tr>
+        <tr><td><code class="tag">font-weight</code></td><td><span class="zh">字体</span></td><td class="use">粗细：bold / 700</td></tr>
+        <tr><td><code class="tag">font-style</code></td><td><span class="zh">字体</span></td><td class="use">倾斜：italic</td></tr>
+        <tr><td><code class="tag">font-family</code></td><td><span class="zh">字体</span></td><td class="use">字体族：微软雅黑, sans-serif</td></tr>
+        <tr><td><code class="tag">line-height</code></td><td><span class="zh">字体</span></td><td class="use">行高：1.5 / 24px（垂直居中技巧）</td></tr>
+        <tr><td><code class="tag">text-align</code></td><td><span class="zh">文本</span></td><td class="use">水平对齐：center / left / right</td></tr>
+        <tr><td><code class="tag">text-indent</code></td><td><span class="zh">文本</span></td><td class="use">首行缩进：2em</td></tr>
+        <tr><td><code class="tag">text-decoration</code></td><td><span class="zh">文本</span></td><td class="use">装饰线：none（去下划线！）/ underline</td></tr>
+        <tr><td><code class="tag">color</code></td><td><span class="zh">文本</span></td><td class="use">文字颜色：red / #ff0000 / rgb()</td></tr>
+        <tr><td><code class="tag">background-color</code></td><td><span class="zh">背景</span></td><td class="use">背景色</td></tr>
+        <tr><td><code class="tag">background-image</code></td><td><span class="zh">背景</span></td><td class="use">背景图：url(地址)</td></tr>
+        <tr><td><code class="tag">background-repeat</code></td><td><span class="zh">背景</span></td><td class="use">平铺：no-repeat / repeat-x / repeat-y</td></tr>
+        <tr><td><code class="tag">background-position</code></td><td><span class="zh">背景</span></td><td class="use">位置：center / left top</td></tr>
+        <tr><td><code class="tag">background-size</code></td><td><span class="zh">背景</span></td><td class="use">大小：cover / contain / 100%</td></tr>
+        <tr><td><code class="tag">width / height</code></td><td><span class="zh">盒子</span></td><td class="use">宽 / 高</td></tr>
+        <tr><td><code class="tag">padding</code></td><td><span class="zh">盒子</span></td><td class="use">内边距（撑大盒子）——自己家加垫子</td></tr>
+        <tr><td><code class="tag">border</code></td><td><span class="zh">盒子</span></td><td class="use">边框——墙</td></tr>
+        <tr><td><code class="tag">margin</code></td><td><span class="zh">盒子</span></td><td class="use">外边距（隔开别人）；0 auto = 水平居中</td></tr>
+        <tr><td><code class="tag">border-radius</code></td><td><span class="zh">盒子</span></td><td class="use">圆角：越大越圆，50% = 圆形</td></tr>
+        <tr><td><code class="tag">box-shadow</code></td><td><span class="zh">盒子</span></td><td class="use">盒子阴影，立体感</td></tr>
+        <tr><td><code class="tag">display</code></td><td><span class="zh">显示</span></td><td class="use">block 块 / inline 行内 / inline-block / none 隐藏</td></tr>
+        <tr><td><code class="tag">overflow</code></td><td><span class="zh">显示</span></td><td class="use">溢出：hidden / auto 滚动条</td></tr>
+        <tr><td><code class="tag">position</code></td><td><span class="zh">定位</span></td><td class="use">relative 相对 / absolute 绝对 / fixed 固定</td></tr>
+        <tr><td><code class="tag">top/right/bottom/left</code></td><td><span class="zh">定位</span></td><td class="use">偏移量（配合 position）</td></tr>
+        <tr><td><code class="tag">z-index</code></td><td><span class="zh">定位</span></td><td class="use">堆叠顺序：数字越大越靠上</td></tr>
+        <tr><td><code class="tag">float</code></td><td><span class="zh">布局</span></td><td class="use">浮动：left / right</td></tr>
+        <tr><td><code class="tag">opacity</code></td><td><span class="zh">修饰</span></td><td class="use">透明度：0~1</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>记忆口诀</h2>
+    <div class="tips">
+      <div class="tip"><b>1️⃣ 标签 = 英文单词</b><p>p = paragraph、img = image、a = anchor、tr = table row、ul = unordered list</p></div>
+      <div class="tip"><b>2️⃣ CSS 前缀定类别</b><p><code>font-</code>管字长相、<code>text-</code>管排版、<code>background-</code>管背景、<code>border-</code>管边框</p></div>
+      <div class="tip"><b>3️⃣ padding 内、margin 外</b><p>padding 是自己家加垫子（盒子变大）；margin 是和邻居保持距离</p></div>
+      <div class="tip"><b>4️⃣ 顺时针简写</b><p>上右下左，永远这个顺序：<code>padding: 10px 20px</code> = 上下10 左右20</p></div>
+      <div class="tip"><b>5️⃣ margin: 0 auto = 水平居中</b><p>最常用的居中方式，记住这一个赢一半</p></div>
+      <div class="tip"><b>6️⃣ 记不住时怎么办</b><p>VS Code 里鼠标悬停标签有英文解释；用本页搜索框随时查</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>3 分钟复习法</h2>
+    <div class="card" style="padding:18px">
+      <p>① 随机打开一个你写过的 <code class="tag">.html</code> 文件　② 看每个标签，在心里说出它的英文单词（p → paragraph）　③ 看每个 CSS 属性说出它管什么　④ 说不出来的，用本页搜索框查并记下来 ✅</p>
+      <p style="margin-top:10px;color:var(--sub)">记忆的真相：不是"背会"，而是"每次查完都能想起"。查 7 次以上就成肌肉记忆了。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 工作流 ============ -->
+<div id="tab-work" style="display:none">
+  <p class="count">学习进度：<b>57/71 = 80%</b> ✅ 完成 ｜ 🟡 14 个待整理 ｜ ⬜ 1 个缺失</p>
+  <div class="flow">
+    <div class="fnode"><b>阶段1 · HTML 基础</b><span>01–14 ｜ 13✅ 1🟡</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode"><b>阶段2 · HTML 进阶</b><span>15–26 ｜ 10✅ 2🟡</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode"><b>阶段3 · CSS 入门</b><span>27–46 ｜ 15✅ 5🟡</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode"><b>阶段4 · CSS 进阶</b><span>47–72 ｜ 19✅ 6🟡 1⬜</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode" style="border-color:#b9a7ff;background:#f7f4ff"><b>🎯 下一站</b><span>Flex 弹性布局</span></div>
+  </div>
+
+  <div class="sec">
+    <h2>阶段 1：HTML 基础标签（01–14）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:70px">状态</th><th style="width:90px">编号</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><span class="bdg ok">✅</span></td><td>01</td><td>标签的写法（双标签/单标签）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>02</td><td>HTML 基本骨架</td></tr>
+        <tr><td><span class="bdg mid">🟡</span></td><td>03</td><td>标签的关系（缺笔记）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>04</td><td>注释</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>05–06</td><td>标题 h1~h6 / 段落 p</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>07</td><td>换行 br / 水平线 hr</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>08</td><td>文本格式化（加粗/倾斜/下划线/删除线）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>09–10</td><td>图像 img / 属性</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>11–12</td><td>相对路径 / 绝对路径</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>13</td><td>超链接 a</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>14</td><td>音频 audio / 视频 video</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>阶段 2：HTML 进阶（15–26）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:70px">状态</th><th style="width:90px">编号</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><span class="bdg ok">✅</span></td><td>15</td><td>个人简介（综合案例）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>16</td><td>列表（无序/有序/定义）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>17</td><td>表格 table</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>18</td><td>合并单元格</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>19</td><td>表单 form / input</td></tr>
+        <tr><td><span class="bdg mid">🟡</span></td><td>20</td><td>表单占位符（内容已在表单笔记中）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>21</td><td>下拉菜单 select/option</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>22</td><td>文本域 textarea</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>23</td><td>label 标签</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>24</td><td>按钮 button</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>25</td><td>无语义布局 div/span</td></tr>
+        <tr><td><span class="bdg mid">🟡</span></td><td>26</td><td>字符实体（缺笔记）</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>阶段 3：CSS 入门（27–46）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:70px">状态</th><th style="width:90px">编号</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><span class="bdg ok">✅</span></td><td>27–28</td><td>初识 CSS / 引入方式</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>29–32</td><td>四大基础选择器（标签/类/id/通配符）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>33</td><td>画盒子</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>34–40</td><td>字体系列（大小/粗细/倾斜/行高/字体族/font）</td></tr>
+        <tr><td><span class="bdg mid">🟡</span></td><td>41–45</td><td>文本修饰（缩进/对齐/修饰线/颜色）缺笔记</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>46</td><td>调试工具（F12）</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>阶段 4：CSS 进阶（47–72）</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:70px">状态</th><th style="width:90px">编号</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><span class="bdg ok">✅</span></td><td>47</td><td>复合选择器</td></tr>
+        <tr><td><span class="bdg mid">🟡</span></td><td>48–50</td><td>子选择器 / 并集 / 交集（缺笔记）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>51–52</td><td>伪类选择器</td></tr>
+        <tr><td><span class="bdg no">⬜</span></td><td>53</td><td>缺课（课程本身跳号，可跳过）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>54–56</td><td>CSS 三大特性（继承/层叠/优先级）</td></tr>
+        <tr><td><span class="bdg mid">🟡</span></td><td>57–59</td><td>叠加优先 / 叠加继承 / 标签结构（缺笔记）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>60–64</td><td>背景系列（图/平铺/位置/缩放/复合）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>65</td><td>显示模式（块/行内/行内块）</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>66–68</td><td>结构伪类 / 伪元素</td></tr>
+        <tr><td><span class="bdg ok">✅</span></td><td>69–72</td><td>盒子模型全套（组成/边框/内边距/多值）</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>🎯 待办清单</h2>
+    <div class="tips">
+      <div class="tip"><b>P1 · 补缺笔记（14 个）</b><p>文本系列 41–45 → 叠加规则 57–59 → 选择器 48–50 → 03/20/26</p></div>
+      <div class="tip"><b>P2 · 复习节奏</b><p>阶段 3、4 是 CSS 核心（62%），学完一块练一次综合案例 1–6</p></div>
+      <div class="tip"><b>P3 · 下一站</b><p>学完 72 课 → Flex 弹性布局 → 浮动、定位、响应式</p></div>
+      <div class="tip"><b>✅ 过关标准</b><p>能默写 HTML 骨架、手写注册页面、口算盒子尺寸、独立完成综合案例</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 课程大纲 ============ -->
+<div id="tab-course" style="display:none">
+  <p class="count">黑马程序员 · <b>200 P</b> 完整课程 ｜ <a href="https://www.bilibili.com/video/BV1kM4y127Li" style="color:var(--blue)" target="_blank">B 站原链接 ↗</a></p>
+  <div class="flow">
+    <div class="fnode"><b>🖥 第1–3天</b><span>HTML+CSS 入门<br>P1–P43</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode"><b>🖥 第4–5天</b><span>选择器+盒模型<br>P44–P69</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode"><b>🖥 第6–7天</b><span>浮动Flex+学成在线<br>P70–P94</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode"><b>🖥 第8–9天</b><span>定位特效+京东首页<br>P95–P131</span></div>
+    <div class="farrow">→</div>
+    <div class="fnode"><b>📱 移动端</b><span>转换动画+rem/vw<br>P132–P200</span></div>
+  </div>
+
+  <div class="sec">
+    <h2>PC 端 · 9 天</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">天数</th><th style="width:100px">P 范围</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><b>第 1 天</b></td><td>P1–P16</td><td>课程导学 / 开发环境 / 标签语法 / HTML骨架 / 标签关系 / 注释 / 标题段落 / 换行水平线 / 文本格式化 / 图像 / 路径 / 超链接 / 音视频 / 综合案例×2</td></tr>
+        <tr><td><b>第 2 天</b></td><td>P17–P28</td><td>列表 / 表格 / 合并单元格 / 表单全套（input/下拉/文本域/label/按钮）/ div和span / 综合案例×2（体育新闻、注册信息）</td></tr>
+        <tr><td><b>第 3 天</b></td><td>P29–P43</td><td>体验CSS / 引入方式 / 选择器 / 画盒子 / 字体全套 / 行高 / 文本修饰 / 颜色 / 调试工具 / 综合案例×2</td></tr>
+        <tr><td><b>第 4 天</b></td><td>P44–P53</td><td>复合选择器 / 伪类 / CSS三大特性 / Emmet / 背景属性 / 显示模式 / 综合案例×2（热词、banner）</td></tr>
+        <tr><td><b>第 5 天</b></td><td>P54–P69</td><td>结构伪类 / 伪元素 / PxCook / 盒子模型全套 / 版心居中 / 清除默认样式 / overflow / 外边距问题 / 圆角阴影 / 综合案例×2</td></tr>
+        <tr><td><b>第 6 天</b></td><td>P70–P81</td><td>标准流 / 浮动全套 / Flex 全套（组成/主轴/伸缩比/换行）/ 抖音解决方案</td></tr>
+        <tr><td><b>第 7 天 🏫</b></td><td>P82–P94</td><td><b>综合项目①学成在线</b>：项目准备 → header（logo/导航/搜索/用户）→ banner → 精品推荐 → 推荐课程 → 工程师区域 → 版权</td></tr>
+        <tr><td><b>第 8 天</b></td><td>P95–P106</td><td>定位全套 / z-index / CSS精灵 / 字体图标 / vertical-align / 过渡 / 透明度光标 / 淘宝轮播图</td></tr>
+        <tr><td><b>第 9 天 🛒</b></td><td>P107–P131</td><td><b>综合项目②京东首页</b>：项目目录 / SEO标签 / Favicon / 快捷导航 / 头部全套 / 底部全套 / banner / 新鲜好物 / 人气推荐 / 热门品牌 / 生鲜 / 最新专题</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>📱 移动端 · 5 天</h2>
+    <div class="card"><table>
+      <thead><tr><th style="width:110px">天数</th><th style="width:100px">P 范围</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td><b>第 1 天</b></td><td>P132–P145</td><td>平面转换（平移/旋转/原点/缩放/倾斜）/ 渐变（线性/径向）/ 喜马拉雅案例</td></tr>
+        <tr><td><b>第 2 天</b></td><td>P146–P157</td><td>空间转换（视距/旋转/立体呈现/缩放）/ 动画全套 / 走马灯 / 精灵动画 / 全民出游</td></tr>
+        <tr><td><b>第 3 天</b></td><td>P158–P173</td><td>谷歌模拟器 / 视口与二倍图 / <b>rem 适配</b> / 媒体查询+rem / flexible / less 全套 / 极速问诊项目</td></tr>
+        <tr><td><b>第 4 天</b></td><td>P174–P185</td><td><b>vw/vh 适配</b> / 酷我音乐项目（头部/搜索/banner/排行榜/歌单/下载/固定）</td></tr>
+        <tr><td><b>第 5 天</b></td><td>P186–P199</td><td><b>媒体查询响应式</b> / Bootstrap 全套 / alloyTeam 项目</td></tr>
+        <tr><td><b>完结</b></td><td>P200</td><td>从 0 到 1 学前端完结篇</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sec">
+    <h2>📍 你的位置</h2>
+    <div class="card" style="padding:18px">
+      <p>已完成到 <b>第 5 天 · 盒子模型 · 内边距</b>（约 P60，总进度 <b>30%</b>）</p>
+      <p style="margin-top:8px">🔜 接下来：<b>P62 版心居中 → P63 清除默认样式 → P64 overflow → P65 外边距合并塌陷 → P66 行内元素内外边距 → P67 圆角阴影</b> → 综合案例：产品卡片 / 新浪新闻</p>
+      <p style="margin-top:8px">🏁 之后进入 <b>第 6 天：浮动 + Flex</b>——前端布局的分水岭，学完就能做真实页面</p>
+    </div>
+  </div>
+</div>
+
+<footer>前端学习手册 · 由 DSH 助手生成 · 离线可用 · 有问题随时问</footer>
+
+<script>
+const q = document.getElementById('q');
+const tabs = document.querySelectorAll('.tab');
+const panes = { 'tab-cheat': document.getElementById('tab-cheat'), 'tab-work': document.getElementById('tab-work'), 'tab-course': document.getElementById('tab-course') };
+let cur = 'tab-cheat';
+
+tabs.forEach(t => t.addEventListener('click', () => {
+  cur = t.dataset.tab;
+  tabs.forEach(x => x.classList.toggle('on', x === t));
+  Object.entries(panes).forEach(([k, v]) => v.style.display = k === cur ? '' : 'none');
+  if (cur === 'tab-cheat') updateCount();
+}));
+
+// 搜索过滤：匹配表格行内容
+q.addEventListener('input', () => {
+  const s = q.value.trim().toLowerCase();
+  document.querySelectorAll('#tab-cheat .card').forEach(card => {
+    let show = 0;
+    card.querySelectorAll('tbody tr').forEach(tr => {
+      const hit = !s || tr.textContent.toLowerCase().includes(s);
+      tr.style.display = hit ? '' : 'none';
+      if (hit) show++;
+    });
+    // 隐藏空卡片（保留标题？整卡隐藏）
+    card.style.display = show ? '' : 'none';
+  });
+  updateCount();
+});
+
+function updateCount(){
+  let n = 0;
+  document.querySelectorAll('#tab-cheat tbody tr').forEach(tr => { if (tr.style.display !== 'none') n++; });
+  document.getElementById('c-cheat').textContent = n;
+}
+updateCount();
+</script>
+</body>
+</html>

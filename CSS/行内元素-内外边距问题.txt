@@ -1,0 +1,8 @@
+行内元素-内外边距问题
+场景：行内元素添加margin和padding，无法改变元素垂直位置
+解决方法：给行内元素添加line-height可以改变垂直位置
+例：span{
+            margin: 50px;
+            padding: 20px;
+            line-height: 100px;
+        }

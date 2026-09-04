@@ -1,0 +1,12 @@
+CSS引入方式
+内部样式表：学习使用
+	CSS代码在style标签里面
+
+外部样式表：开发使用（工作中常用）
+CSS代码写在单独的CSS文件中(.css结尾的文件)
+在HTML使用link标签引入
+<link rel="stylesheet"href="./.css结尾的文件>
+
+行内样式：配合JavaScript使用
+CSS写在标签的style属性值里
+<div style="color：red; font-size：20px">这是div标签</div>

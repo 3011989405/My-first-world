@@ -1,0 +1,21 @@
+音频标签：<audio src="音频URL"></audio>
+常见属性：
+属性					作用					特殊说明
+src(必须属性)			音频URL				支持格式：MP3，Ogg，Wav
+controls				显示音频控制面板		
+loop				循环播放
+autoplay				自动播放				为了提升用户体验，浏览器一般会禁用自动播放功能
+在HTML5里面，如果属性名和属性值完全一样，可以简写一个单词
+原型：<audio src="音频URL" controls="controls"></audio>
+简写后:：<audio src="音频URL" controls></audio>
+
+
+
+视频标签：<video src="视频的URL"></video>
+常见属性：
+属性					作用					特殊说明
+src(必须属性)			视频URL				支持格式：MP4，WebM，Ogg
+controls				显示视频控制面板		
+loop				循环播放
+muted				静音播放
+autoplay				自动播放				为了提升用户体验，浏览器支持在静音状态自动播放

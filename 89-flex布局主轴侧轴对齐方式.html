@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex布局主轴侧轴对齐方式</title>
+    <style>
+        .box{
+            display: flex;
+            /* justify-content: flex-start; */
+
+            /* justify-content: end; */
+
+            /* 居中 */
+            /* justify-content: center; */
+
+            /* 父级剩余尺寸分配成间距 */
+            /* justify-content: space-between; */
+
+            /* 间距出现在弹性盒子两侧 */
+            /* 视觉效果：弹性盒子之间的间距是两端间距的2倍 */
+            /* justify-content: space-around; */
+
+            justify-content: space-evenly;
+            height: 300px;
+            border: 1px solid #000; 
+        }
+
+        .box div{
+            width: 200px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>测试标签1</div>
+        <div>测试标签2</div>
+        <div>测试标签3</div>
+    </div>
+</body>
+</html>

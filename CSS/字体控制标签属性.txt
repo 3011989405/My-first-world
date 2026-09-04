@@ -1,0 +1,87 @@
+描述				属性				效果
+字体大小			font-size			控制文字大小
+字体粗细			font-weight		控制文字粗细
+字体倾斜			font-style		控制文字是否倾斜
+行高				line-height		控制上下两行文字间行高
+字体族			font-family		控制文字字体
+字体符合属性		font				复合属性
+文本缩进			text-indent		控制文本缩进
+文本对齐			text-align		控制文字对齐方式
+修饰线			text-decoration	控制文字的修饰线
+颜色				color			控制文字颜色
+
+字体大小：font-size
+p{
+	font-size：30px;
+}
+
+字体粗细：font-weight
+p{
+	font-weight：400;
+}(不加粗)
+
+p{
+	font-weight：700;
+}(加粗)
+
+字体倾斜：font-style
+属性值：正常（不倾斜）normal
+		倾斜 italic
+（em标签默认倾斜）
+
+行高：设置多行文本的间距
+属性值：line-height
+属性值：数字+px
+		数字（当前标签font-size属性值的倍数）
+行高垂直居中的技巧：行高属性值等于盒子高度属性值
+
+字体：font-family
+属性值：字体名，例：楷体
+p{
+	font-family：字体;
+}
+网页开发建议使用无衬线字体，例如：微软雅黑这样笔画后面无任何多余笔画
+
+font复合属性：设置网页文字公共样式
+复合属性：属性的简写方式，一个属性对应多个值的写法，各个属性值之前用空格隔开
+font：是否倾斜 是否加粗 字号/行高 字体（必须按顺序书写）
+div{
+	font：italic 700 30px/2 楷体;
+}
+注意：font属性必须写字号和字体，否则不生效
+
+文本缩进：text-indent
+属性值：数字+px
+               数字+em（推荐：1em=当前标签的字号大小）
+
+文本对齐方式：text-align 本质：控制内容的对齐方式，属性要设置给内容的父级
+属性值：
+属性值				效果
+left					左对齐
+center				居中对齐
+right				右对齐
+注意：居中的是文字内容，不是标签
+
+图片水平对齐方式：使用div包裹img，在title下面用div
+div{
+	text-align：center
+}
+<div>
+	<img......>
+</div>
+
+文本修饰线：text-decoration
+属性值			效果
+none			无
+underline		下划线
+line-through		删除线
+overline			上划线
+
+文字颜色：color
+
+颜色表示方式				属性值				说明											使用场景
+颜色关键字				颜色英文单词			red、green、blue							学习测试
+rgb表示法				rgb（r,g,b）			r,g,b表示红绿蓝三原色，取值0，255				了解
+rgba表示法				rgba（r,g,b,a）		a表示透明度，取值：0-1						开发使用，实现透明色
+十六进制表示法			#RRGGBB			#000000，#ffcc00，简写#000，#fc0			开发使用（从设计稿复制）
+
