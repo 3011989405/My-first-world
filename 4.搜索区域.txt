@@ -1,0 +1,3 @@
+搜索区域（search）
+实现方法：
+	标签结构：.search(display: flex;)>input + a/button
