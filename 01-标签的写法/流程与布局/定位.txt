@@ -7,3 +7,14 @@
 		.right
 		.top
 		.bottom
+
+相对定位：
+	position: relative
+
+绝对定位：
+	position: absolute
+使用场景：子级绝对定位，父级相对定位（子绝父相）	
+
+固定定位：
+	position: fixed
+场景：元素的位置在网页滚动时不会改变
